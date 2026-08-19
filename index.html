@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRYPTO CAPITAL - Bitcoin Investment</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; background: #050505; color: #fff; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  
+  /* NAV */
+  nav { display: flex; justify-content: space-between; padding: 25px 0; border-bottom: 1px solid #1A1A1A; }
+  .brand { font-size: 22px; font-weight: 900; color: #FFD700; }
+  .brand span { color: #fff; }
+  nav a { color: #AAA; text-decoration: none; margin-left: 30px; font-weight: 700; font-size: 14px; }
+  
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 100px 0; align-items: center; }
+  .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.1; }
+  .hero h1 span { background: linear-gradient(90deg, #FFD700, #F7931A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { color: #AAA; margin: 20px 0 30px; font-size: 16px; }
+  .btn { background: linear-gradient(90deg, #FFD700, #F7931A); color: #000; padding: 15px 30px; border-radius: 10px; font-weight: 800; text-decoration: none; display: inline-block; }
+  
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 60px 0; }
+  .stat-box { background: #0F0F0F; border: 1px solid #1A1A1A; padding: 25px; border-radius: 12px; text-align: center; }
+  .stat-box h3 { font-size: 28px; color: #FFD700; font-weight: 900; }
+  .stat-box p { color: #777; font-size: 13px; margin-top: 5px; }
+  
+  /* PRICE TICKER */
+  .ticker { background: #0F0F0F; padding: 20px; border-radius: 12px; border: 1px solid #1A1A1A; text-align: center; }
+  .ticker h4 { color: #888; font-size: 12px; }
+  .ticker .price { font-size: 36px; font-weight: 900; color: #FFD700; margin: 10px 0; }
+  
+  /* PLANS */
+  .plans { padding: 80px 0; }
+  .plans h2 { text-align: center; font-size: 36px; margin-bottom: 40px; }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .plan { background: #0F0F0F; border: 1px solid #1A1A1A; padding: 30px; border-radius: 14px; }
+  .plan h3 { color: #FFD700; font-size: 20px; }
+  .plan .roi { font-size: 32px; font-weight: 900; margin: 15px 0; }
+  .plan ul { list-style: none; color: #AAA; font-size: 14px; }
+  .plan ul li { margin: 8px 0; }
+  .plan ul li:before { content: "✓ "; color: #FFD700; }
+  
+  .footer { text-align: center; padding: 40px 0; border-top: 1px solid #1A1A1A; color: #555; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- NAV -->
+  <nav>
+    <div class="brand">CRYPTO<span>CAPITAL</span></div>
+    <div>
+      <a href="#home">HOME</a>
+      <a href="#plans">PLANS</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div>
+      <h1>Build Wealth With <span>Bitcoin</span> in 2026</h1>
+      <p>Professional Bitcoin investment plans. 150% - 200% monthly returns. Managed by BETHUB experts.</p>
+      <a href="https://wa.me/971507148631" class="btn">START WITH $100</a>
+    </div>
+    <div class="ticker">
+      <h4>LIVE BITCOIN PRICE</h4>
+      <div class="price" id="btcPrice">$67,432</div>
+      <div id="btcChange" style="color:#00C853; font-weight:700;">+2.34%</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-box"><h3>10,000+</h3><p>Active Investors</p></div>
+    <div class="stat-box"><h3>$50M+</h3><p>Total Volume</p></div>
+    <div class="stat-box"><h3>99.9%</h3><p>Uptime</p></div>
+  </div>
+
+  <!-- PLANS -->
+  <div class="plans" id="plans">
+    <h2>Bitcoin Investment Plans</h2>
+    <div class="plan-grid">
+      <div class="plan">
+        <h3>STARTER PLAN</h3>
+        <div class="roi">$100 - $499</div>
+        <div class="roi" style="color:#FFD700;">150% ROI</div>
+        <ul>
+          <li>30 Days Duration</li>
+          <li>Daily Bitcoin Signals</li>
+          <li>WhatsApp Support</li>
+        </ul>
+        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
+      </div>
+
+      <div class="plan">
+        <h3>PRO PLAN</h3>
+        <div class="roi">$500 - $2,499</div>
+        <div class="roi" style="color:#FFD700;">200% ROI</div>
+        <ul>
+          <li>30 Days Duration</li>
+          <li>VIP Bitcoin Signals</li>
+          <li>Personal Account Manager</li>
+        </ul>
+        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
+      </div>
+
+      <div class="plan">
+        <h3>ELITE PLAN</h3>
+        <div class="roi">$2,500+</div>
+        <div class="roi" style="color:#FFD700;">250% ROI</div>
+        <ul>
+          <li>30 Days Duration</li>
+          <li>Private Trading Group</li>
+          <li>24/7 VIP Support</li>
+        </ul>
+        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 CRYPTO CAPITAL. Not financial advice. Invest responsibly.
+  </div>
+</div>
+
+<script>
+async function getBTC() {
+  try {
+    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+    let data = await res.json();
+    document.getElementById('btcPrice').innerText = '$' + data.bitcoin.usd.toLocaleString();
+    let ch = data.bitcoin.usd_24h_change.toFixed(2);
+    document.getElementById('btcChange').innerText = (ch > 0 ? '+' : '') + ch + '%';
+    document.getElementById('btcChange').style.color = ch > 0 ? '#00C853' : '#E53935';
+  } catch(e){}
+}
+getBTC(); setInterval(getBTC, 60000);
+</script>
+
+</body>
+</html>
