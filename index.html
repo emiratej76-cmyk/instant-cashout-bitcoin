@@ -3,156 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BETHUB SIGNALS - Crypto & Bitcoin VIP Ghana</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+<title>BETHUB TRADING</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-  body { background: #050505; color: #fff; }
-  .wrap { max-width: 600px; margin: 0 auto; padding: 20px; }
-  
-  .hero { text-align: center; padding: 30px 0; }
-  .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.2; }
-  .hero h1 span { color: #FCD535; }
-  .hero p { color: #AAA; margin: 12px 0 20px; }
-  .win-rate { background: #0ECB81; color: #000; display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 14px; }
-  
-  .price-bar { background: #111; padding: 12px; border-radius: 10px; display: flex; justify-content: space-around; margin: 20px 0; }
-  .coin { text-align: center; }
-  .coin b { color: #FCD535; font-size: 16px; }
-  
-  .free-box { background: linear-gradient(135deg, #0ECB81, #00A86B); padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center; }
-  .free-box h3 { color: #000; margin-bottom: 8px; }
-  .free-btn { background: #000; color: #0ECB81; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 800; display: block; margin-top: 10px; }
-  
-  .proof { background: #111; padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #FCD535; }
-  .proof img { width: 40px; height: 40px; border-radius: 50%; float: left; margin-right: 10px; }
-  .proof b { color: #0ECB81; }
-  
-  .plans h2 { text-align: center; margin: 30px 0 20px; font-size: 24px; }
-  .plan { background: #111; border: 1px solid #222; padding: 20px; border-radius: 14px; margin-bottom: 15px; }
-  .plan h3 { color: #FCD535; font-size: 18px; }
-  .price { font-size: 28px; font-weight: 900; margin: 10px 0; color: #FCD535; }
-  .price small { font-size: 14px; color: #888; }
-  .plan ul { list-style: none; margin: 15px 0; }
-  .plan ul li { margin: 8px 0; color: #AAA; }
-  .plan ul li:before { content: "✓ "; color: #0ECB81; font-weight: 800; }
-  .join-btn { background: #FCD535; color: #000; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 16px; border: none; text-align: center; display: block; text-decoration: none; }
-  .popular { border: 2px solid #FCD535; }
-  
-  .signals { margin-top: 30px; }
-  .signal { background: #111; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-  .signal .win { color: #0ECB81; font-weight: 700; }
-  .signal .loss { color: #F6465D; font-weight: 700; }
-  
-  .footer { text-align: center; color: #555; font-size: 12px; padding: 30px 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  body { background: #1A1D22; color: #E0E0E0; }
+  .topbar { background: #15181D; padding: 8px 15px; display: flex; gap: 15px; border-bottom: 1px solid #2A2E35; }
+  .pair { background: #2A2E35; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+  .pair.active { background: #FCD535; color: #000; font-weight: 700; }
+  .main { display: flex; height: calc(100vh - 50px); }
+  .left { width: 220px; background: #15181D; padding: 10px; border-right: 1px solid #2A2E35; }
+  .chart-area { flex: 1; padding: 10px; }
+  .right { width: 280px; background: #15181D; padding: 10px; border-left: 1px solid #2A2E35; }
+  .symbol-row { display: flex; justify-content: space-between; padding: 8px; background: #1E2229; margin-bottom: 4px; border-radius: 4px; }
+  .signal { background: #0ECB81; color: #000; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+  .price { color: #FFA500; }
+  .trade-box { background: #2A2E35; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+  .btn-buy { background: #0ECB81; color: #000; width: 48%; padding: 10px; border: none; font-weight: 700; border-radius: 4px; }
+  .btn-sell { background: #F6465D; color: #fff; width: 48%; padding: 10px; border: none; font-weight: 700; border-radius: 4px; }
+  table { width: 100%; font-size: 12px; }
+  table th { color: #888; text-align: left; padding: 6px; }
+  .profit { color: #0ECB81; }
+  .balance { background: #2A2E35; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="win-rate">87.3% WIN RATE</div>
-    <h1>Make Money With <span>Crypto Signals</span></h1>
-    <p>Get 3-5 VIP Bitcoin & Crypto trades daily on WhatsApp</p>
+<!-- TOP PAIRS -->
+<div class="topbar">
+  <div class="pair">BTC/USD</div>
+  <div class="pair">ETH/BTC</div>
+  <div class="pair active">XAG/USD</div>
+  <div class="pair">ETH</div>
+  <div class="pair">BTC</div>
+</div>
+
+<div class="main">
+  <!-- LEFT SYMBOLS -->
+  <div class="left">
+    <h4 style="margin-bottom:10px;">Favorites</h4>
+    <div class="symbol-row"><span><span class="signal">B</span> BTC</span><span class="price">94,380.40</span></div>
+    <div class="symbol-row"><span><span class="signal">B</span> XAU/USD</span><span class="price">4,384.672</span></div>
+    <div class="symbol-row"><span><span class="signal">B</span> XAG/USD</span><span class="price">63.078</span></div>
+    <div class="symbol-row"><span><span class="signal">B</span> ETH</span><span class="price">3,920.62</span></div>
+    <div class="symbol-row"><span><span class="signal">B</span> USOIL</span><span class="price">85.009</span></div>
   </div>
 
-  <!-- LIVE PRICES IN GHS -->
-  <div class="price-bar">
-    <div class="coin">BTC<br><b id="btc">₵--</b></div>
-    <div class="coin">BNB<br><b id="bnb">₵--</b></div>
-    <div class="coin">ETH<br><b id="eth">₵--</b></div>
-  </div>
-
-  <!-- FREE SIGNALS -->
-  <div class="free-box">
-    <h3>🎁 GET 1 FREE SIGNAL DAILY</h3>
-    <p>Join our free WhatsApp group first</p>
-    <a href="https://wa.me/971507148631?text=Hi%20Add%20me%20to%20FREE%20Signals%20Group" class="free-btn">JOIN FREE GROUP</a>
-  </div>
-
-  <!-- PROOF -->
-  <div class="proof">
-    <img src="https://i.pravatar.cc/100">
-    <div><b>Kwame from Accra just made ₵3,200</b><br>From BTC Long Signal sent 2hrs ago</div>
-  </div>
-
-  <!-- VIP PLANS -->
-  <div class="plans">
-    <h2>Choose Your VIP Plan</h2>
+  <!-- CHART -->
+  <div class="chart-area">
+    <h3>Silver vs US Dollar - 1m</h3>
+    <canvas id="chart" style="height:400px;"></canvas>
     
-    <div class="plan">
-      <h3>WEEKLY VIP</h3>
-      <div class="price">₵300 <small>/ 7 Days</small></div>
-      <ul>
-        <li>3-5 Signals Daily</li>
-        <li>Bitcoin + Altcoin Signals</li>
-        <li>Entry, TP, SL Included</li>
-        <li>WhatsApp Support</li>
-      </ul>
-      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20WEEKLY%20VIP%20₵300" class="join-btn">JOIN NOW</a>
-    </div>
-
-    <div class="plan popular">
-      <h3>MONTHLY VIP 🔥 MOST POPULAR</h3>
-      <div class="price">₵950 <small>/ 30 Days</small></div>
-      <ul>
-        <li>Everything in Weekly</li>
-        <li>Private VIP Group</li>
-        <li>Risk Management Training</li>
-        <li>24/7 Signal Alerts</li>
-      </ul>
-      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20MONTHLY%20VIP%20₵950" class="join-btn">JOIN NOW</a>
-    </div>
-
-    <div class="plan">
-      <h3>LIFETIME VIP</h3>
-      <div class="price">₵3,000 <small>One Time</small></div>
-      <ul>
-        <li>Everything in Monthly</li>
-        <li>Lifetime Access</li>
-        <li>1-on-1 Coaching</li>
-      </ul>
-      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20LIFETIME%20VIP%20₵3000" class="join-btn">JOIN NOW</a>
-    </div>
+    <!-- OPEN TRADES -->
+    <h4 style="margin-top:15px;">Open 3</h4>
+    <table>
+      <tr><th>Symbol</th><th>Type</th><th>Volume</th><th>Open</th><th>P/L USD</th></tr>
+      <tr><td>EUR/USD</td><td class="profit">Buy</td><td>0.01</td><td>1.15781</td><td class="profit">+2.15</td></tr>
+      <tr><td>ETH</td><td class="profit">Buy</td><td>0.1</td><td>1,905.39</td><td class="profit">+1.52</td></tr>
+      <tr><td>USOIL</td><td class="profit">Buy</td><td>0.01</td><td>83.866</td><td class="profit">+12.33</td></tr>
+    </table>
   </div>
 
-  <!-- LAST SIGNALS -->
-  <div class="signals">
-    <h2 style="margin-bottom:15px;">Last VIP Signals</h2>
-    <div class="signal">
-      <div>BTC/USDT LONG<br><small>Entry: ₵420,000 | TP: ₵425,000</small></div>
-      <div class="win">WON +₵3,100</div>
+  <!-- RIGHT TRADE PANEL -->
+  <div class="right">
+    <div class="balance">
+      <small>Demo Balance</small>
+      <h2>10,079.00 USD</h2>
+      <small>Equity: 10,079.00 | P/L: +16.00</small>
     </div>
-    <div class="signal">
-      <div>BNB/USDT SHORT<br><small>Entry: ₵3,780 | TP: ₵3,720</small></div>
-      <div class="win">WON +₵2,400</div>
+    
+    <div class="trade-box">
+      <h4>XAG/USD</h4>
+      <div style="display:flex; gap:10px; margin:10px 0;">
+        <button class="btn-sell" onclick="openWA('SELL')">Sell 63.078</button>
+        <button class="btn-buy" onclick="openWA('BUY')">Buy 63.109</button>
+      </div>
+      <label>Volume Lots</label>
+      <input type="number" value="0.01" style="width:100%; padding:6px; background:#1A1D22; border:1px solid #444; color:#fff; border-radius:4px;">
     </div>
-    <div class="signal">
-      <div>ETH/USDT LONG<br><small>Entry: ₵21,500 | SL: ₵21,200</small></div>
-      <div class="loss">STOP LOSS</div>
-    </div>
+    
+    <a href="https://wa.me/971507148631?text=I%20want%20to%20Deposit" 
+       style="background:#FCD535; color:#000; display:block; text-align:center; padding:12px; border-radius:6px; text-decoration:none; font-weight:700;">
+       DEPOSIT
+    </a>
   </div>
-
-  <div class="footer">
-    © 2026 BETHUB SIGNALS GHANA. Not financial advice. Trade at your own risk.
-  </div>
-
 </div>
 
 <script>
-// LIVE PRICES IN GHS - Using USD rate x 12.5
-let rate = 12.5; // Change this to current USD to GHS rate
-async function getPrices(){
-  try{
-    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,binancecoin,ethereum&vs_currencies=usd');
-    let data = await res.json();
-    document.getElementById('btc').innerText = '₵' + Math.round(data.bitcoin.usd * rate).toLocaleString();
-    document.getElementById('bnb').innerText = '₵' + Math.round(data.binancecoin.usd * rate).toLocaleString();
-    document.getElementById('eth').innerText = '₵' + Math.round(data.ethereum.usd * rate).toLocaleString();
-  }catch(e){}
+// CHART
+const ctx = document.getElementById('chart');
+new Chart(ctx, {
+  type: 'line',
+  data: { labels: Array(20).fill(''), datasets: [{ data: [63.05,63.06,63.04,63.07,63.08,63.07,63.09,63.10,63.08,63.07], borderColor: '#FCD535', borderWidth: 2, fill: false }]},
+  options: { responsive: true, plugins: { legend: { display: false }}, scales: { x: { display: false }, y: { ticks: { color: '#888' }}} }
+});
+
+// ALL BUTTONS GO TO WHATSAPP
+function openWA(action){
+  window.open(`https://wa.me/971507148631?text=Hi%20I%20want%20to%20${action}%20XAGUSD`,'_blank');
 }
-getPrices(); setInterval(getPrices, 60000);
 </script>
 
 </body>
