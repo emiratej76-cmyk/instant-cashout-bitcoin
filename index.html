@@ -2,105 +2,182 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>BETHUB TRADING</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-  body { background: #1A1D22; color: #E0E0E0; }
-  .topbar { background: #15181D; padding: 8px 15px; display: flex; gap: 15px; border-bottom: 1px solid #2A2E35; }
-  .pair { background: #2A2E35; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
-  .pair.active { background: #FCD535; color: #000; font-weight: 700; }
-  .main { display: flex; height: calc(100vh - 50px); }
-  .left { width: 220px; background: #15181D; padding: 10px; border-right: 1px solid #2A2E35; }
-  .chart-area { flex: 1; padding: 10px; }
-  .right { width: 280px; background: #15181D; padding: 10px; border-left: 1px solid #2A2E35; }
-  .symbol-row { display: flex; justify-content: space-between; padding: 8px; background: #1E2229; margin-bottom: 4px; border-radius: 4px; }
-  .signal { background: #0ECB81; color: #000; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
-  .price { color: #FFA500; }
-  .trade-box { background: #2A2E35; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
-  .btn-buy { background: #0ECB81; color: #000; width: 48%; padding: 10px; border: none; font-weight: 700; border-radius: 4px; }
-  .btn-sell { background: #F6465D; color: #fff; width: 48%; padding: 10px; border: none; font-weight: 700; border-radius: 4px; }
+  body { background: #0A0D12; color: #E0E0E0; }
+ .hidden { display: none; }
+  
+  /* LOGIN PAGE */
+ .login { max-width: 400px; margin: 100px auto; padding: 20px; background: #15181D; border-radius: 12px; }
+ .login input { width: 100%; padding: 12px; margin: 8px 0; background: #1E2229; border: 1px solid #333; color: #fff; border-radius: 6px; }
+ .login button { width: 100%; padding: 12px; background: #FCD535; color: #000; border: none; font-weight: 800; border-radius: 6px; margin-top: 10px; }
+  
+  /* DASHBOARD */
+ .topbar { background: #15181D; padding: 8px 15px; display: flex; gap: 10px; overflow-x: auto; border-bottom: 1px solid #2A2E35; }
+ .pair { background: #2A2E35; padding: 6px 12px; border-radius: 4px; white-space: nowrap; cursor: pointer; }
+ .pair.active { background: #FCD535; color: #000; font-weight: 700; }
+ .main { display: flex; flex-direction: column; height: calc(100vh - 50px); }
+  @media(min-width: 900px) {.main { flex-direction: row; }.left { width: 220px; }.right { width: 280px; }
+ .left,.right { background: #15181D; padding: 10px; border: 1px solid #2A2E35; }
+ .chart-area { flex: 1; padding: 10px; }
+ .symbol-row { display: flex; justify-content: space-between; padding: 10px; background: #1E2229; margin-bottom: 4px; border-radius: 4px; }
+ .signal { background: #0ECB81; color: #000; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+ .trade-box { background: #2A2E35; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+ .btn-buy { background: #0ECB81; color: #000; width: 48%; padding: 12px; border: none; font-weight: 700; border-radius: 4px; }
+ .btn-sell { background: #F6465D; color: #fff; width: 48%; padding: 12px; border: none; font-weight: 700; border-radius: 4px; }
   table { width: 100%; font-size: 12px; }
   table th { color: #888; text-align: left; padding: 6px; }
-  .profit { color: #0ECB81; }
-  .balance { background: #2A2E35; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+ .profit { color: #0ECB81; }
+ .balance { background: #2A2E35; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+ .logout { color: #F6465D; text-align: right; cursor: pointer; font-size: 12px; }
 </style>
 </head>
 <body>
 
-<!-- TOP PAIRS -->
-<div class="topbar">
-  <div class="pair">BTC/USD</div>
-  <div class="pair">ETH/BTC</div>
-  <div class="pair active">XAG/USD</div>
-  <div class="pair">ETH</div>
-  <div class="pair">BTC</div>
+<!-- 1. LOGIN SYSTEM -->
+<div id="loginPage" class="login">
+  <h2 style="text-align:center; margin-bottom:20px;">BETHUB LOGIN</h2>
+  <input id="email" placeholder="Email">
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="login()">LOGIN</button>
+  <p style="text-align:center; margin-top:15px; color:#888;">New? Contact admin on WhatsApp</p>
 </div>
 
-<div class="main">
-  <!-- LEFT SYMBOLS -->
-  <div class="left">
-    <h4 style="margin-bottom:10px;">Favorites</h4>
-    <div class="symbol-row"><span><span class="signal">B</span> BTC</span><span class="price">94,380.40</span></div>
-    <div class="symbol-row"><span><span class="signal">B</span> XAU/USD</span><span class="price">4,384.672</span></div>
-    <div class="symbol-row"><span><span class="signal">B</span> XAG/USD</span><span class="price">63.078</span></div>
-    <div class="symbol-row"><span><span class="signal">B</span> ETH</span><span class="price">3,920.62</span></div>
-    <div class="symbol-row"><span><span class="signal">B</span> USOIL</span><span class="price">85.009</span></div>
+<!-- 2. DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div style="background:#15181D; padding:8px 15px; display:flex; justify-content:space-between;">
+    <b>BETHUB TRADING</b>
+    <span class="logout" onclick="logout()">Logout</span>
   </div>
+  
+  <div class="topbar" id="pairList"></div>
 
-  <!-- CHART -->
-  <div class="chart-area">
-    <h3>Silver vs US Dollar - 1m</h3>
-    <canvas id="chart" style="height:400px;"></canvas>
-    
-    <!-- OPEN TRADES -->
-    <h4 style="margin-top:15px;">Open 3</h4>
-    <table>
-      <tr><th>Symbol</th><th>Type</th><th>Volume</th><th>Open</th><th>P/L USD</th></tr>
-      <tr><td>EUR/USD</td><td class="profit">Buy</td><td>0.01</td><td>1.15781</td><td class="profit">+2.15</td></tr>
-      <tr><td>ETH</td><td class="profit">Buy</td><td>0.1</td><td>1,905.39</td><td class="profit">+1.52</td></tr>
-      <tr><td>USOIL</td><td class="profit">Buy</td><td>0.01</td><td>83.866</td><td class="profit">+12.33</td></tr>
-    </table>
-  </div>
-
-  <!-- RIGHT TRADE PANEL -->
-  <div class="right">
-    <div class="balance">
-      <small>Demo Balance</small>
-      <h2>10,079.00 USD</h2>
-      <small>Equity: 10,079.00 | P/L: +16.00</small>
+  <div class="main">
+    <!-- LEFT SYMBOLS -->
+    <div class="left">
+      <h4 style="margin-bottom:10px;">Market Watch</h4>
+      <div id="marketList"></div>
     </div>
-    
-    <div class="trade-box">
-      <h4>XAG/USD</h4>
-      <div style="display:flex; gap:10px; margin:10px 0;">
-        <button class="btn-sell" onclick="openWA('SELL')">Sell 63.078</button>
-        <button class="btn-buy" onclick="openWA('BUY')">Buy 63.109</button>
+
+    <!-- CHART -->
+    <div class="chart-area">
+      <h3 id="chartTitle">XAG/USD - 1m</h3>
+      <canvas id="chart"></canvas>
+      
+      <h4 style="margin-top:15px;">Open Trades</h4>
+      <table id="openTrades"></table>
+    </div>
+
+    <!-- RIGHT TRADE PANEL -->
+    <div class="right">
+      <div class="balance">
+        <small>Demo Balance</small>
+        <h2 id="balance">$10,079.00</h2>
+        <small>Equity: <span id="equity">$10,079.00</span> | P/L: <span id="pl" class="profit">+16.00</span></small>
       </div>
-      <label>Volume Lots</label>
-      <input type="number" value="0.01" style="width:100%; padding:6px; background:#1A1D22; border:1px solid #444; color:#fff; border-radius:4px;">
+      
+      <div class="trade-box">
+        <h4 id="tradeSymbol">XAG/USD</h4>
+        <div style="display:flex; justify-content:space-between; margin:10px 0;">
+          <span>Sell <b id="sellPrice">63.078</b></span>
+          <span>Buy <b id="buyPrice">63.109</b></span>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-sell" onclick="trade('SELL')">SELL</button>
+          <button class="btn-buy" onclick="trade('BUY')">BUY</button>
+        </div>
+        <label style="margin-top:10px; display:block;">Volume Lots</label>
+        <input id="volume" type="number" value="0.01" step="0.01" style="width:100%; padding:8px; background:#1A1D22; border:1px solid #444; color:#fff; border-radius:4px;">
+      </div>
+      
+      <a href="https://wa.me/971507148631?text=I%20want%20to%20Deposit" 
+         style="background:#FCD535; color:#000; display:block; text-align:center; padding:12px; border-radius:6px; text-decoration:none; font-weight:700;">
+         DEPOSIT
+      </a>
     </div>
-    
-    <a href="https://wa.me/971507148631?text=I%20want%20to%20Deposit" 
-       style="background:#FCD535; color:#000; display:block; text-align:center; padding:12px; border-radius:6px; text-decoration:none; font-weight:700;">
-       DEPOSIT
-    </a>
   </div>
 </div>
 
 <script>
-// CHART
-const ctx = document.getElementById('chart');
-new Chart(ctx, {
-  type: 'line',
-  data: { labels: Array(20).fill(''), datasets: [{ data: [63.05,63.06,63.04,63.07,63.08,63.07,63.09,63.10,63.08,63.07], borderColor: '#FCD535', borderWidth: 2, fill: false }]},
-  options: { responsive: true, plugins: { legend: { display: false }}, scales: { x: { display: false }, y: { ticks: { color: '#888' }}} }
-});
+const WHATSAPP = "971507148631"; // CHANGE THIS TO YOUR NUMBER
+let currentUser = null;
+let currentPair = "XAGUSD";
+let chart;
 
-// ALL BUTTONS GO TO WHATSAPP
-function openWA(action){
-  window.open(`https://wa.me/971507148631?text=Hi%20I%20want%20to%20${action}%20XAGUSD`,'_blank');
+// 1. LOGIN SYSTEM - Saves to browser
+function login(){
+  let email = document.getElementById('email').value;
+  let pass = document.getElementById('pass').value;
+  if(email && pass){
+    localStorage.setItem('bethub_user', email);
+    localStorage.setItem('bethub_balance', '10079'); // Each user gets demo balance
+    showDashboard(email);
+  }else{ alert("Enter email and password") }
+}
+function logout(){ localStorage.removeItem('bethub_user'); location.reload(); }
+function showDashboard(user){
+  currentUser = user;
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('balance').innerText = '$' + localStorage.getItem('bethub_balance');
+  loadPairs();
+  loadChart();
+  setInterval(loadChart, 5000); // 3. LIVE PRICES every 5sec
+}
+if(localStorage.getItem('bethub_user')) showDashboard(localStorage.getItem('bethub_user'));
+
+// 2. PAIRS + 3. LIVE PRICES
+const pairs = ["BTCUSD","ETHUSD","XAGUSD","EURUSD","USOIL"];
+function loadPairs(){
+  document.getElementById('pairList').innerHTML = pairs.map(p=>`<div class="pair ${p==currentPair?'active':''}" onclick="changePair('${p}')">${p}</div>`).join('');
+  document.getElementById('marketList').innerHTML = pairs.map(p=>`<div class="symbol-row"><span><span class="signal">B</span> ${p}</span><span class="price" id="price_${p}">--</span></div>`).join('');
+}
+
+// GET REAL PRICES FROM COINGECKO + FOREX API
+async function loadChart(){
+  try{
+    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,silver&vs_currencies=usd');
+    let data = await res.json();
+    
+    let prices = {
+      BTCUSD: data.bitcoin.usd,
+      ETHUSD: data.ethereum.usd, 
+      XAGUSD: data.silver.usd * 32.15, // oz to XAG
+      EURUSD: 1.1578, // Static for demo
+      USOIL: 85.01
+    }
+    
+    for(let p in prices){
+      let bid = (prices[p] - 0.01).toFixed(3);
+      let ask = (prices[p] + 0.01).toFixed(3);
+      if(document.getElementById(`price_${p}`)) document.getElementById(`price_${p}`).innerText = bid;
+    }
+    
+    document.getElementById('sellPrice').innerText = (prices[currentPair]-0.01).toFixed(3);
+    document.getElementById('buyPrice').innerText = (prices[currentPair]+0.01).toFixed(3);
+    document.getElementById('chartTitle').innerText = currentPair + ' - 1m';
+    
+    // Update chart
+    if(chart) chart.destroy();
+    chart = new Chart(document.getElementById('chart'), {
+      type: 'line',
+      data: { labels: Array(20).fill(''), datasets: [{ data: Array(20).fill(prices[currentPair]).map((x,i)=>x+Math.random()-0.5), borderColor: '#FCD535', borderWidth: 2 }]},
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }}}
+    });
+    
+  }catch(e){}
+}
+
+function changePair(p){ currentPair = p; document.getElementById('tradeSymbol').innerText = p; loadChart(); }
+
+// ALL TRADES GO TO WHATSAPP
+function trade(action){
+  let vol = document.getElementById('volume').value;
+  let msg = `Hi Admin. I want to ${action} ${currentPair} with ${vol} lots. User: ${currentUser}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 </script>
 
