@@ -2,157 +2,158 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>BETHUB EXCHANGE</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BETHUB SIGNALS - Crypto & Bitcoin VIP Ghana</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-  body { background: #0B0E11; color: #EAECEF; padding-bottom: 80px; }
-  .wrap { max-width: 500px; margin: 0 auto; }
+  body { background: #050505; color: #fff; }
+  .wrap { max-width: 600px; margin: 0 auto; padding: 20px; }
   
-  /* TOP NAV */
-  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
-  .icons { display: flex; gap: 18px; font-size: 20px; }
-  .toggle { background: #1E2329; padding: 4px; border-radius: 20px; display: flex; }
-  .toggle button { border: none; background: none; color: #848E9C; padding: 6px 16px; border-radius: 16px; font-weight: 600; }
-  .toggle .active { background: #fff; color: #000; }
+  .hero { text-align: center; padding: 30px 0; }
+  .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.2; }
+  .hero h1 span { color: #FCD535; }
+  .hero p { color: #AAA; margin: 12px 0 20px; }
+  .win-rate { background: #0ECB81; color: #000; display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 14px; }
   
-  /* SEARCH */
-  .search { margin: 10px 16px; background: #1E2329; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px; color: #848E9C; }
+  .price-bar { background: #111; padding: 12px; border-radius: 10px; display: flex; justify-content: space-around; margin: 20px 0; }
+  .coin { text-align: center; }
+  .coin b { color: #FCD535; font-size: 16px; }
   
-  /* ONBOARDING */
-  .onboard { padding: 0 16px; margin: 15px 0; }
-  .onboard small { color: #848E9C; }
-  .onboard-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
-  .add-btn { background: #FCD535; color: #000; padding: 8px 16px; border-radius: 6px; font-weight: 700; border: none; }
+  .free-box { background: linear-gradient(135deg, #0ECB81, #00A86B); padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center; }
+  .free-box h3 { color: #000; margin-bottom: 8px; }
+  .free-btn { background: #000; color: #0ECB81; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 800; display: block; margin-top: 10px; }
   
-  /* COIN CARDS GRID */
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
-  .card { background: #1E2329; padding: 14px; border-radius: 12px; }
-  .card-head { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 8px; }
-  .card-head img { width: 24px; height: 24px; }
-  .price { font-size: 20px; font-weight: 700; }
-  .change.down { color: #F6465D; }
-  .change.up { color: #0ECB81; }
-  .mini-chart { height: 40px; margin-top: 8px; }
-  .buy-tag { background: #0ECB81; color: #000; font-size: 11px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 5px; }
+  .proof { background: #111; padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #FCD535; }
+  .proof img { width: 40px; height: 40px; border-radius: 50%; float: left; margin-right: 10px; }
+  .proof b { color: #0ECB81; }
   
-  /* DISCOVER */
-  .tabs { display: flex; gap: 20px; padding: 20px 16px 10px; border-bottom: 1px solid #1E2329; }
-  .tabs span { color: #848E9C; font-weight: 600; }
-  .tabs .active { color: #EAECEF; border-bottom: 2px solid #FCD535; padding-bottom: 8px; }
-  .discover-card { background: #8B5CF6; margin: 12px 16px; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
-  .discover-card img { width: 32px; height: 32px; border-radius: 50%; }
+  .plans h2 { text-align: center; margin: 30px 0 20px; font-size: 24px; }
+  .plan { background: #111; border: 1px solid #222; padding: 20px; border-radius: 14px; margin-bottom: 15px; }
+  .plan h3 { color: #FCD535; font-size: 18px; }
+  .price { font-size: 28px; font-weight: 900; margin: 10px 0; color: #FCD535; }
+  .price small { font-size: 14px; color: #888; }
+  .plan ul { list-style: none; margin: 15px 0; }
+  .plan ul li { margin: 8px 0; color: #AAA; }
+  .plan ul li:before { content: "✓ "; color: #0ECB81; font-weight: 800; }
+  .join-btn { background: #FCD535; color: #000; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 16px; border: none; text-align: center; display: block; text-decoration: none; }
+  .popular { border: 2px solid #FCD535; }
   
-  /* BOTTOM NAV */
-  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #0B0E11; border-top: 1px solid #1E2329; display: flex; justify-content: space-around; padding: 8px 0; }
-  .nav-item { text-align: center; font-size: 11px; color: #848E9C; }
-  .nav-item.active { color: #FCD535; }
-  .nav-item div { font-size: 22px; margin-bottom: 2px; }
+  .signals { margin-top: 30px; }
+  .signal { background: #111; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .signal .win { color: #0ECB81; font-weight: 700; }
+  .signal .loss { color: #F6465D; font-weight: 700; }
+  
+  .footer { text-align: center; color: #555; font-size: 12px; padding: 30px 0; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- TOP -->
-  <div class="topbar">
-    <div class="icons">☰ 🎧</div>
-    <div class="toggle">
-      <button class="active">Exchange</button>
-      <button>Wallet</button>
-    </div>
-    <div class="icons">🔔 💬</div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="win-rate">87.3% WIN RATE</div>
+    <h1>Make Money With <span>Crypto Signals</span></h1>
+    <p>Get 3-5 VIP Bitcoin & Crypto trades daily on WhatsApp</p>
   </div>
 
-  <!-- SEARCH -->
-  <div class="search">🔥 ACE top gainer</div>
-
-  <!-- ONBOARDING -->
-  <div class="onboard">
-    <small>Onboarding Tasks</small>
-    <div class="onboard-row">
-      <b>Buy or Deposit Your First Crypto</b>
-      <button class="add-btn">Add Funds</button>
-    </div>
+  <!-- LIVE PRICES IN GHS -->
+  <div class="price-bar">
+    <div class="coin">BTC<br><b id="btc">₵--</b></div>
+    <div class="coin">BNB<br><b id="bnb">₵--</b></div>
+    <div class="coin">ETH<br><b id="eth">₵--</b></div>
   </div>
 
-  <!-- COIN CARDS -->
-  <div class="grid">
-    <!-- BNB -->
-    <div class="card">
-      <div class="card-head"><img src="https://cryptologos.cc/logos/bnb-bnb-logo.png"> BNB</div>
-      <div class="price" id="bnbPrice">601.85</div>
-      <div class="change down">▼ 0.52%</div>
-      <canvas id="bnbChart" class="mini-chart"></canvas>
-    </div>
-    
-    <!-- BINANCE CARD -->
-    <div class="card">
-      <div style="color:#848E9C; margin-bottom:10px;">Binance Card ></div>
-      <div style="background:#000; padding:8px; border-radius:6px; margin-bottom:8px;">BINANCE</div>
-      <div style="font-size:13px; color:#848E9C; margin-bottom:8px;">Use your crypto and enjoy cashback rewards</div>
-      <button style="background:#2B3139; border:none; color:#fff; padding:6px 12px; border-radius:6px;">Apply</button>
-    </div>
-    
-    <!-- USDT -->
-    <div class="card">
-      <div class="card-head"><img src="https://cryptologos.cc/logos/tether-usdt-logo.png"> USDT / AED</div>
-      <div class="buy-tag">Buy</div>
-      <div style="font-weight:700;">Balance</div>
-      <div style="margin-top:8px;">💳</div>
-    </div>
-    
-    <!-- EURI -->
-    <div class="card">
-      <div class="card-head"><img src="https://cryptologos.cc/logos/euro-euri-logo.png"> EURI</div>
-      <div class="price" id="euriPrice">1.1602</div>
-      <div class="change up">▲ 0.25%</div>
-      <canvas id="euriChart" class="mini-chart"></canvas>
-    </div>
+  <!-- FREE SIGNALS -->
+  <div class="free-box">
+    <h3>🎁 GET 1 FREE SIGNAL DAILY</h3>
+    <p>Join our free WhatsApp group first</p>
+    <a href="https://wa.me/971507148631?text=Hi%20Add%20me%20to%20FREE%20Signals%20Group" class="free-btn">JOIN FREE GROUP</a>
   </div>
 
-  <!-- DISCOVER -->
-  <div class="tabs">
-    <span class="active">Discover</span><span>Following</span><span>Hot</span><span>Announcements</span>
-  </div>
-  <div class="discover-card">
+  <!-- PROOF -->
+  <div class="proof">
     <img src="https://i.pravatar.cc/100">
-    <div><span style="color:#FCD535; font-weight:700;">+2,730</span> <span style="background:#fff; color:#8B5CF6; padding:2px 6px; border-radius:4px; font-size:11px;">Top Trader</span> Cook market with me</div>
+    <div><b>Kwame from Accra just made ₵3,200</b><br>From BTC Long Signal sent 2hrs ago</div>
   </div>
 
-  <!-- BOTTOM NAV -->
-  <div class="bottom-nav">
-    <div class="nav-item active"><div>🏠</div>Home</div>
-    <div class="nav-item"><div>📈</div>Markets</div>
-    <div class="nav-item"><div>🔄</div>Trade</div>
-    <div class="nav-item"><div>📄</div>Futures</div>
-    <div class="nav-item"><div>💼</div>Assets</div>
+  <!-- VIP PLANS -->
+  <div class="plans">
+    <h2>Choose Your VIP Plan</h2>
+    
+    <div class="plan">
+      <h3>WEEKLY VIP</h3>
+      <div class="price">₵300 <small>/ 7 Days</small></div>
+      <ul>
+        <li>3-5 Signals Daily</li>
+        <li>Bitcoin + Altcoin Signals</li>
+        <li>Entry, TP, SL Included</li>
+        <li>WhatsApp Support</li>
+      </ul>
+      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20WEEKLY%20VIP%20₵300" class="join-btn">JOIN NOW</a>
+    </div>
+
+    <div class="plan popular">
+      <h3>MONTHLY VIP 🔥 MOST POPULAR</h3>
+      <div class="price">₵950 <small>/ 30 Days</small></div>
+      <ul>
+        <li>Everything in Weekly</li>
+        <li>Private VIP Group</li>
+        <li>Risk Management Training</li>
+        <li>24/7 Signal Alerts</li>
+      </ul>
+      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20MONTHLY%20VIP%20₵950" class="join-btn">JOIN NOW</a>
+    </div>
+
+    <div class="plan">
+      <h3>LIFETIME VIP</h3>
+      <div class="price">₵3,000 <small>One Time</small></div>
+      <ul>
+        <li>Everything in Monthly</li>
+        <li>Lifetime Access</li>
+        <li>1-on-1 Coaching</li>
+      </ul>
+      <a href="https://wa.me/971507148631?text=Hi%20I%20want%20LIFETIME%20VIP%20₵3000" class="join-btn">JOIN NOW</a>
+    </div>
+  </div>
+
+  <!-- LAST SIGNALS -->
+  <div class="signals">
+    <h2 style="margin-bottom:15px;">Last VIP Signals</h2>
+    <div class="signal">
+      <div>BTC/USDT LONG<br><small>Entry: ₵420,000 | TP: ₵425,000</small></div>
+      <div class="win">WON +₵3,100</div>
+    </div>
+    <div class="signal">
+      <div>BNB/USDT SHORT<br><small>Entry: ₵3,780 | TP: ₵3,720</small></div>
+      <div class="win">WON +₵2,400</div>
+    </div>
+    <div class="signal">
+      <div>ETH/USDT LONG<br><small>Entry: ₵21,500 | SL: ₵21,200</small></div>
+      <div class="loss">STOP LOSS</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 BETHUB SIGNALS GHANA. Not financial advice. Trade at your own risk.
   </div>
 
 </div>
 
 <script>
-// MINI CHARTS
-function makeChart(id, data, color){
-  new Chart(document.getElementById(id), {
-    type: 'line',
-    data: { labels: [1,2,3,4,5,6,7], datasets: [{ data: data, borderColor: color, borderWidth: 2, fill: true, backgroundColor: color+'20', tension: 0.4, pointRadius: 0 }]},
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }}, scales: { x: { display: false }, y: { display: false }}}
-  });
-}
-makeChart('bnbChart', [610,608,605,603,604,602,601], '#F6465D');
-makeChart('euriChart', [1.15,1.152,1.155,1.158,1.159,1.160,1.1602], '#0ECB81');
-
-// LIVE PRICE UPDATE
-async function updatePrices(){
+// LIVE PRICES IN GHS - Using USD rate x 12.5
+let rate = 12.5; // Change this to current USD to GHS rate
+async function getPrices(){
   try{
-    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd&include_24hr_change=true');
+    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,binancecoin,ethereum&vs_currencies=usd');
     let data = await res.json();
-    document.getElementById('bnbPrice').innerText = data.binancecoin.usd.toFixed(2);
+    document.getElementById('btc').innerText = '₵' + Math.round(data.bitcoin.usd * rate).toLocaleString();
+    document.getElementById('bnb').innerText = '₵' + Math.round(data.binancecoin.usd * rate).toLocaleString();
+    document.getElementById('eth').innerText = '₵' + Math.round(data.ethereum.usd * rate).toLocaleString();
   }catch(e){}
 }
-updatePrices(); setInterval(updatePrices, 60000);
+getPrices(); setInterval(getPrices, 60000);
 </script>
+
 </body>
 </html>
