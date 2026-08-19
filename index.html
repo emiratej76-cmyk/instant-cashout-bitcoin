@@ -2,146 +2,157 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRYPTO CAPITAL - Bitcoin Investment</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>BETHUB EXCHANGE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Poppins', sans-serif; background: #050505; color: #fff; }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+  body { background: #0B0E11; color: #EAECEF; padding-bottom: 80px; }
+  .wrap { max-width: 500px; margin: 0 auto; }
   
-  /* NAV */
-  nav { display: flex; justify-content: space-between; padding: 25px 0; border-bottom: 1px solid #1A1A1A; }
-  .brand { font-size: 22px; font-weight: 900; color: #FFD700; }
-  .brand span { color: #fff; }
-  nav a { color: #AAA; text-decoration: none; margin-left: 30px; font-weight: 700; font-size: 14px; }
+  /* TOP NAV */
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+  .icons { display: flex; gap: 18px; font-size: 20px; }
+  .toggle { background: #1E2329; padding: 4px; border-radius: 20px; display: flex; }
+  .toggle button { border: none; background: none; color: #848E9C; padding: 6px 16px; border-radius: 16px; font-weight: 600; }
+  .toggle .active { background: #fff; color: #000; }
   
-  /* HERO */
-  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 100px 0; align-items: center; }
-  .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.1; }
-  .hero h1 span { background: linear-gradient(90deg, #FFD700, #F7931A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero p { color: #AAA; margin: 20px 0 30px; font-size: 16px; }
-  .btn { background: linear-gradient(90deg, #FFD700, #F7931A); color: #000; padding: 15px 30px; border-radius: 10px; font-weight: 800; text-decoration: none; display: inline-block; }
+  /* SEARCH */
+  .search { margin: 10px 16px; background: #1E2329; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px; color: #848E9C; }
   
-  /* STATS */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 60px 0; }
-  .stat-box { background: #0F0F0F; border: 1px solid #1A1A1A; padding: 25px; border-radius: 12px; text-align: center; }
-  .stat-box h3 { font-size: 28px; color: #FFD700; font-weight: 900; }
-  .stat-box p { color: #777; font-size: 13px; margin-top: 5px; }
+  /* ONBOARDING */
+  .onboard { padding: 0 16px; margin: 15px 0; }
+  .onboard small { color: #848E9C; }
+  .onboard-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+  .add-btn { background: #FCD535; color: #000; padding: 8px 16px; border-radius: 6px; font-weight: 700; border: none; }
   
-  /* PRICE TICKER */
-  .ticker { background: #0F0F0F; padding: 20px; border-radius: 12px; border: 1px solid #1A1A1A; text-align: center; }
-  .ticker h4 { color: #888; font-size: 12px; }
-  .ticker .price { font-size: 36px; font-weight: 900; color: #FFD700; margin: 10px 0; }
+  /* COIN CARDS GRID */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
+  .card { background: #1E2329; padding: 14px; border-radius: 12px; }
+  .card-head { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 8px; }
+  .card-head img { width: 24px; height: 24px; }
+  .price { font-size: 20px; font-weight: 700; }
+  .change.down { color: #F6465D; }
+  .change.up { color: #0ECB81; }
+  .mini-chart { height: 40px; margin-top: 8px; }
+  .buy-tag { background: #0ECB81; color: #000; font-size: 11px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 5px; }
   
-  /* PLANS */
-  .plans { padding: 80px 0; }
-  .plans h2 { text-align: center; font-size: 36px; margin-bottom: 40px; }
-  .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .plan { background: #0F0F0F; border: 1px solid #1A1A1A; padding: 30px; border-radius: 14px; }
-  .plan h3 { color: #FFD700; font-size: 20px; }
-  .plan .roi { font-size: 32px; font-weight: 900; margin: 15px 0; }
-  .plan ul { list-style: none; color: #AAA; font-size: 14px; }
-  .plan ul li { margin: 8px 0; }
-  .plan ul li:before { content: "✓ "; color: #FFD700; }
+  /* DISCOVER */
+  .tabs { display: flex; gap: 20px; padding: 20px 16px 10px; border-bottom: 1px solid #1E2329; }
+  .tabs span { color: #848E9C; font-weight: 600; }
+  .tabs .active { color: #EAECEF; border-bottom: 2px solid #FCD535; padding-bottom: 8px; }
+  .discover-card { background: #8B5CF6; margin: 12px 16px; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+  .discover-card img { width: 32px; height: 32px; border-radius: 50%; }
   
-  .footer { text-align: center; padding: 40px 0; border-top: 1px solid #1A1A1A; color: #555; font-size: 12px; }
+  /* BOTTOM NAV */
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #0B0E11; border-top: 1px solid #1E2329; display: flex; justify-content: space-around; padding: 8px 0; }
+  .nav-item { text-align: center; font-size: 11px; color: #848E9C; }
+  .nav-item.active { color: #FCD535; }
+  .nav-item div { font-size: 22px; margin-bottom: 2px; }
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <!-- NAV -->
-  <nav>
-    <div class="brand">CRYPTO<span>CAPITAL</span></div>
-    <div>
-      <a href="#home">HOME</a>
-      <a href="#plans">PLANS</a>
-      <a href="#contact">CONTACT</a>
-    </div>
-  </nav>
 
-  <!-- HERO -->
-  <div class="hero" id="home">
-    <div>
-      <h1>Build Wealth With <span>Bitcoin</span> in 2026</h1>
-      <p>Professional Bitcoin investment plans. 150% - 200% monthly returns. Managed by BETHUB experts.</p>
-      <a href="https://wa.me/971507148631" class="btn">START WITH $100</a>
+  <!-- TOP -->
+  <div class="topbar">
+    <div class="icons">☰ 🎧</div>
+    <div class="toggle">
+      <button class="active">Exchange</button>
+      <button>Wallet</button>
     </div>
-    <div class="ticker">
-      <h4>LIVE BITCOIN PRICE</h4>
-      <div class="price" id="btcPrice">$67,432</div>
-      <div id="btcChange" style="color:#00C853; font-weight:700;">+2.34%</div>
-    </div>
+    <div class="icons">🔔 💬</div>
   </div>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat-box"><h3>10,000+</h3><p>Active Investors</p></div>
-    <div class="stat-box"><h3>$50M+</h3><p>Total Volume</p></div>
-    <div class="stat-box"><h3>99.9%</h3><p>Uptime</p></div>
-  </div>
+  <!-- SEARCH -->
+  <div class="search">🔥 ACE top gainer</div>
 
-  <!-- PLANS -->
-  <div class="plans" id="plans">
-    <h2>Bitcoin Investment Plans</h2>
-    <div class="plan-grid">
-      <div class="plan">
-        <h3>STARTER PLAN</h3>
-        <div class="roi">$100 - $499</div>
-        <div class="roi" style="color:#FFD700;">150% ROI</div>
-        <ul>
-          <li>30 Days Duration</li>
-          <li>Daily Bitcoin Signals</li>
-          <li>WhatsApp Support</li>
-        </ul>
-        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
-      </div>
-
-      <div class="plan">
-        <h3>PRO PLAN</h3>
-        <div class="roi">$500 - $2,499</div>
-        <div class="roi" style="color:#FFD700;">200% ROI</div>
-        <ul>
-          <li>30 Days Duration</li>
-          <li>VIP Bitcoin Signals</li>
-          <li>Personal Account Manager</li>
-        </ul>
-        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
-      </div>
-
-      <div class="plan">
-        <h3>ELITE PLAN</h3>
-        <div class="roi">$2,500+</div>
-        <div class="roi" style="color:#FFD700;">250% ROI</div>
-        <ul>
-          <li>30 Days Duration</li>
-          <li>Private Trading Group</li>
-          <li>24/7 VIP Support</li>
-        </ul>
-        <a href="https://wa.me/971507148631" class="btn" style="width:100%; text-align:center; margin-top:20px;">INVEST NOW</a>
-      </div>
+  <!-- ONBOARDING -->
+  <div class="onboard">
+    <small>Onboarding Tasks</small>
+    <div class="onboard-row">
+      <b>Buy or Deposit Your First Crypto</b>
+      <button class="add-btn">Add Funds</button>
     </div>
   </div>
 
-  <div class="footer">
-    © 2026 CRYPTO CAPITAL. Not financial advice. Invest responsibly.
+  <!-- COIN CARDS -->
+  <div class="grid">
+    <!-- BNB -->
+    <div class="card">
+      <div class="card-head"><img src="https://cryptologos.cc/logos/bnb-bnb-logo.png"> BNB</div>
+      <div class="price" id="bnbPrice">601.85</div>
+      <div class="change down">▼ 0.52%</div>
+      <canvas id="bnbChart" class="mini-chart"></canvas>
+    </div>
+    
+    <!-- BINANCE CARD -->
+    <div class="card">
+      <div style="color:#848E9C; margin-bottom:10px;">Binance Card ></div>
+      <div style="background:#000; padding:8px; border-radius:6px; margin-bottom:8px;">BINANCE</div>
+      <div style="font-size:13px; color:#848E9C; margin-bottom:8px;">Use your crypto and enjoy cashback rewards</div>
+      <button style="background:#2B3139; border:none; color:#fff; padding:6px 12px; border-radius:6px;">Apply</button>
+    </div>
+    
+    <!-- USDT -->
+    <div class="card">
+      <div class="card-head"><img src="https://cryptologos.cc/logos/tether-usdt-logo.png"> USDT / AED</div>
+      <div class="buy-tag">Buy</div>
+      <div style="font-weight:700;">Balance</div>
+      <div style="margin-top:8px;">💳</div>
+    </div>
+    
+    <!-- EURI -->
+    <div class="card">
+      <div class="card-head"><img src="https://cryptologos.cc/logos/euro-euri-logo.png"> EURI</div>
+      <div class="price" id="euriPrice">1.1602</div>
+      <div class="change up">▲ 0.25%</div>
+      <canvas id="euriChart" class="mini-chart"></canvas>
+    </div>
   </div>
+
+  <!-- DISCOVER -->
+  <div class="tabs">
+    <span class="active">Discover</span><span>Following</span><span>Hot</span><span>Announcements</span>
+  </div>
+  <div class="discover-card">
+    <img src="https://i.pravatar.cc/100">
+    <div><span style="color:#FCD535; font-weight:700;">+2,730</span> <span style="background:#fff; color:#8B5CF6; padding:2px 6px; border-radius:4px; font-size:11px;">Top Trader</span> Cook market with me</div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div>🏠</div>Home</div>
+    <div class="nav-item"><div>📈</div>Markets</div>
+    <div class="nav-item"><div>🔄</div>Trade</div>
+    <div class="nav-item"><div>📄</div>Futures</div>
+    <div class="nav-item"><div>💼</div>Assets</div>
+  </div>
+
 </div>
 
 <script>
-async function getBTC() {
-  try {
-    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
-    let data = await res.json();
-    document.getElementById('btcPrice').innerText = '$' + data.bitcoin.usd.toLocaleString();
-    let ch = data.bitcoin.usd_24h_change.toFixed(2);
-    document.getElementById('btcChange').innerText = (ch > 0 ? '+' : '') + ch + '%';
-    document.getElementById('btcChange').style.color = ch > 0 ? '#00C853' : '#E53935';
-  } catch(e){}
+// MINI CHARTS
+function makeChart(id, data, color){
+  new Chart(document.getElementById(id), {
+    type: 'line',
+    data: { labels: [1,2,3,4,5,6,7], datasets: [{ data: data, borderColor: color, borderWidth: 2, fill: true, backgroundColor: color+'20', tension: 0.4, pointRadius: 0 }]},
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }}, scales: { x: { display: false }, y: { display: false }}}
+  });
 }
-getBTC(); setInterval(getBTC, 60000);
-</script>
+makeChart('bnbChart', [610,608,605,603,604,602,601], '#F6465D');
+makeChart('euriChart', [1.15,1.152,1.155,1.158,1.159,1.160,1.1602], '#0ECB81');
 
+// LIVE PRICE UPDATE
+async function updatePrices(){
+  try{
+    let res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd&include_24hr_change=true');
+    let data = await res.json();
+    document.getElementById('bnbPrice').innerText = data.binancecoin.usd.toFixed(2);
+  }catch(e){}
+}
+updatePrices(); setInterval(updatePrices, 60000);
+</script>
 </body>
 </html>
