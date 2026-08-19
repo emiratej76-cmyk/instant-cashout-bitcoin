@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head><title>BETHUB ADMIN</title>
+<style>
+  body{background:#0A0D12; color:#fff; font-family:Arial; padding:20px;}
+ .box{background:#15181D; padding:20px; border-radius:10px; max-width:500px; margin:auto;}
+  input,button{width:100%; padding:12px; margin:8px 0; background:#1E2229; border:1px solid #333; color:#fff; border-radius:6px;}
+  button{background:#FCD535; color:#000; font-weight:800;}
+ .user{background:#2A2E35; padding:10px; margin:5px 0; border-radius:6px;}
+</style>
+</head>
+<body>
+<div class="box">
+  <h2>🔑 BETHUB ADMIN</h2>
+  <input id="newEmail" placeholder="Client Email">
+  <input id="newBalance" type="number" placeholder="Set Balance $">
+  <button onclick="addUser()">CREATE/UPDATE CLIENT</button>
+  <hr>
+  <h3>Clients</h3>
+  <div id="userList"></div>
+</div>
+
+<script>
+function addUser(){
+  let email = document.getElementById('newEmail').value;
+  let balance = document.getElementById('newBalance').value;
+  let data = JSON.parse(localStorage.getItem('bethub_users') || '{}');
+  data[email] = {balance: balance};
+  localStorage.setItem('bethub_users', JSON.stringify(data));
+  loadUsers();
+}
+function loadUsers(){
+  let data = JSON.parse(localStorage.getItem('bethub_users') || '{}');
+  document.getElementById('userList').innerHTML = Object.keys(data).map(e=>
+    `<div class="user">${e} <b>$${data[e].balance}</b></div>`
+  ).join('');
+}
+loadUsers();
+</script>
+</body>
+</html>
